@@ -20,7 +20,8 @@ const StyledConfirmDelete = styled.div`
   }
 `;
 
-function ConfirmDelete({ resourceName, onConfirm, disabled }) {
+//since this is a child component of modal window it will receive onCloseModal prop by using cloneElement
+function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
   return (
     <StyledConfirmDelete>
       <Heading as="h3">Delete {resourceName}</Heading>
@@ -30,10 +31,14 @@ function ConfirmDelete({ resourceName, onConfirm, disabled }) {
       </p>
 
       <div>
-        <Button variation="secondary" disabled={disabled}>
+        <Button
+          variations="secondary"
+          disabled={disabled}
+          onClick={onCloseModal}
+        >
           Cancel
         </Button>
-        <Button variation="danger" disabled={disabled}>
+        <Button variations="danger" disabled={disabled} onClick={onConfirm}>
           Delete
         </Button>
       </div>
